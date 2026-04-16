@@ -1,0 +1,32 @@
+html{
+    height: 100%;
+}
+body{
+    background-color: gray;
+    height: 100%;
+}
+
+.header{
+    background-color: blue;
+    height: 10%;
+}
+.section{
+    background-color: yellow;
+    height: 80%;
+}
+.footer{
+    background-color: rebeccapurple ;
+    height: 10%;
+}
+.main{
+    background-color: red;
+    height: 100%;
+    width: 70%;
+    display: inline-block;
+}
+.aside{
+    background-color: black;
+    height:100% ;
+    width: 29.5%;
+    display: inline-block;
+}
