@@ -7,9 +7,9 @@ saludar()*/
     const titulo = document.getElementById("principal")
     titulo.style.backgroundColor = "red"
 }*/
-AgregarEstudiante = () => () {
+AgregarEstudiante = () =>  {
     const divContenedor = document.getElementById("contenedor")
-    const itemEstudiante = document.createElement
+    const itemEstudiante = document.createElement("p")
     itemEstudiante.inner.Text="ok"
     divContenedor.appendChild(itemEstudiante)
 }
