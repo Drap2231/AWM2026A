@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitios Turisticos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Ranking de Sitios Turísticos</h1>
+    <div class="principal">
+        <div class="tarjeta">
+            <img src="https://i.pinimg.com/236x/3a/11/03/3a1103ad9c45dbd90a4be1761610ad10.jpg" alt="montañas">
+            <div class="info">
+                <div class="cabecera">
+                    <h2>El Panecillo</h2>
+                    <p>1000 Likes</p>
+                </div>
+                <h2>Quito, Ecuador</h2>
+                <span>
+                    <p>El Panecillo es una elevacion natural de 3.000 metros sobre el nivel del mar, 200 metros más alto que el promedio de la ciudad de Quito</p>
+                </span>
+                <button>Like</button>
+            </div>
+        </div>
+        <div class="tarjeta">
+            <img src="https://www.conmishijos.com/assets/posts/7000/7879-bola-del-mundo.jpg" alt="mitad mundo">
+            <div class="info">
+                <div class="cabecera">
+                    <h2>Mitad del Mundo</h2>
+                    <p>980 Likes</p>
+                </div>
+                <h2>Quito, Ecuador</h2>
+                <span>
+                    <p>La ciudad <strong>Mitad del Mundo</strong> es un curioso turistico y cultural propiedad de la prefectura de la provincia de Pichincha. Esta situado en la Parroquia</p>
+                </span>
+                <button>Like</button>
+            </div>
+        </div>
+        <div class="tarjetasDestino">
+            <div class="miniTarjetas">
+                <h2>Destino preferido:</h2>
+                <img src="https://i.pinimg.com/236x/3a/11/03/3a1103ad9c45dbd90a4be1761610ad10.jpg" alt="montañas">
+            </div>
+            <div class="miniTarjetas">
+                <h2>Tu destino mas cercano:</h2>
+                <img src="https://www.conmishijos.com/assets/posts/7000/7879-bola-del-mundo.jpg" alt="mitad mundo">
+            </div>
+            <div class="miniTarjetas">
+                <h2>Destino mas economico:</h2>
+                <img src="https://i.pinimg.com/236x/3a/11/03/3a1103ad9c45dbd90a4be1761610ad10.jpg" alt="montañas">
+            </div>
+        </div>
+        <div class="tarjetaVerde">
+            <h2>Quiero Viajar a este destino!</h2>
+            <div class="selector">
+                <label for="selector">Sitio Turistico:</label>
+                <select name="selector" id="selector">
+                    <option value="Panecillo">El Panecillo</option>
+                    <option value="Mitad">Mitad del Mundo</option>
+                </select>
+            </div>
+            <div class="fechas">
+                <div class="grupoFecha">
+                    <label for="fechaIni">Fecha Inicial:</label>
+                    <input type="date" name="fechaIni" id="fechaIni">
+                </div>
+                <div class="grupoFecha">
+                    <label for="fechaFin">Fecha Fin:</label>
+                    <input type="date" name="fechaFin" id="fechaFin">
+                </div>
+            </div>
+            <button id="enviar">Enviar</button>
+        </div>
+    </div>
+</body>
+</html>

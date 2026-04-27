@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Ranking de sitios turisticos</h1>
+<div class="Lugares">
+    <div class="card-left">
+        <img class="img1" src="Montania.png" alt="Montaña">
+    </div>
+    <div class="card-right">
+        <div class="header">
+            <div class="info">
+                <span class="Lugar"><strong>El Panecillo</strong></span>
+                <span class="Ubicacion">Quito, Ecuador</span>
+            </div>
+            <span class="likes">1000 likes</span>
+        </div>
+        <span class="Descripcion">
+            <strong>El Panecillo</strong> El Panecillo es una elevación natural de 3.000 metros sobre el nivel del mar, (200 metros más alto que el promedio de la ciudad de Quito)
+        </span>
+        <input type="button" value="Like">
+    </div>
+</div>
+<div class="Lugares">
+    <div class="card-left">
+        <img class="img1" src="globo.png" alt="Globo">
+    </div>
+    <div class="card-right">
+        <div class="header">
+            <div class="info">
+                <span class="Lugar"><strong>Mitad del Mundo</strong></span>
+                <span class="Ubicacion">Quito, Ecuador</span>
+            </div>
+            <span class="likes">980 likes</span>
+        </div>
+        <span class="Descripcion">
+            <strong>La Ciudad Mitad del Mundo</strong> es un complejo turístico y cultural propiedad de la prefectura de la provincia de Pichincha. Está situado en la parroquia
+        </span>
+        <input type="button" value="Like">
+    </div>
+</div>
+
+    <div id = "ok">
+        <div class="Verde">
+            <h4>Destino Preferido:</h4>  
+            <img class="img1" src="Montania.png" width="70">     
+        </div>
+        <div class="Verde">
+            <h4>Tu destino mas cercano:</h4> 
+             <img class="img1" src="globo.png" width="70">      
+        </div>
+        <div class="Verde">
+            <h4>Destino mas economico:</h4>  
+            <img class="img1" src="Montania.png" width="70">     
+        </div>
+    </div>
+    <form id ="Busqueda">   
+       <h4>Quiero viajar a este sitio!</h4> 
+       	<label for=Sitios>Sitio Turistico:</label>
+       <select name="Language" >
+    				<option>Panecillo</option>
+    				<option>Mitad del Mundo</option>
+    				<option>Centro Historico</option>
+		</select> <br>
+        <label for=Fecha>Fecha Inicial:</label>
+        <input type="date">
+        <label for=Language>Fecha Final:</label>
+        <input type="date">
+        <input type="submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,154 @@
+body{
+    background-color: rgb(1, 138, 212);
+    text-align: center;
+}
+.contenedorTarjetas{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-left: 10%;
+    margin-right: 10%;    
+    flex: 1;
+    align-items: stretch;
+}
+    .tarjeta{
+        flex: 1;
+        
+        border-radius: 30px;
+        background-color: gold;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3%;
+    }
+        .tarjetaContenido{
+            flex: 6;
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 0%;
+        }
+            .tarjetaImagen{
+                flex: 1;
+                width: 25%;
+                min-width: 150px;
+                border-radius: 50%;
+                align-self: flex-end;
+                margin: 2%;
+                margin-bottom: 0;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+            }
+            .tarjetaTexto{
+                flex: 3;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+                .tarjetaEncabezado{
+                    flex: 1;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                }
+                    .tarjetaTitulo{
+                        flex:2;
+                        font-weight:bold;
+                        text-align:  center;
+                    }
+                    .tarjetaLikes{
+                        flex:1;
+                        font-weight:normal;
+                    }
+
+                .tarjetaCiudad{
+                    flex:1;
+                    box-sizing: content-box;
+                    padding-right: 33.33%;
+                    text-align:  center;
+                }
+                .tarjetaInfo{
+                    flex:2;
+                    text-align: center;
+                    line-height: 1.8;
+                    font-weight:normal;
+                }
+                .tarjetaInfo > *{
+                    background-color: white;
+                }
+
+    button{
+        width: 15%;
+        border: 2px solid #000;
+        padding: 3px;
+    }
+
+#destinos{
+    flex-direction: row;
+    margin: 0%;
+    gap: 30px;
+}
+
+#destinos>.tarjeta{
+    background-color: green;
+}
+#destinos .tarjetaImagen{
+    flex: 2;
+    width: 60%;
+    min-width: 100px;
+    align-self: center;
+}
+#destinos .tarjetaEncabezado{
+    flex: 1;
+}
+
+#viajar{
+    background-color: green;
+}
+#frmViajar{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    gap: 10px;
+}
+#frmViajar div {
+    display: flex;         
+    align-items: center;   
+    gap: 10px;             
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+select, input {
+    flex: 1;              
+    border: 1px solid #000;
+    box-sizing: content-box;
+    height: 30px;
+}
+
+h3,h2 {
+    margin: 2px;
+}
+
+/* aun no vemos esto pero sirve para que se
+ detecte si la pantalla es demasiado delgada */
+@media (max-width: 600px) {
+    #destinos,.tarjetaContenido{
+        flex-direction: column;
+    }
+    .tarjetaImagen{
+        align-self: center;
+    }
+    .itemFormulario{
+        flex-wrap:wrap;
+    }
+    .itemFormulario div{
+        flex-wrap: wrap;
+    }
+}
+
+/* NOTE: Para debug, le pone un borde rojo a todo */
+/* *{
+    outline: 1px solid red !important; 
+} */

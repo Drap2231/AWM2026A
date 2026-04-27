@@ -1,0 +1,128 @@
+*{
+    font-family:Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: skyblue;
+
+}
+h1{
+    text-align: center;
+}
+.principal{
+    width: 800px;
+    margin: auto;
+    padding: 20px;
+    
+}
+.tarjeta{
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    padding: 25px;
+    margin: 50px;
+}
+img{
+    width: 100px;
+    border-radius: 100%;
+    margin-right: 10px;
+    border: 3px solid black;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.cabecera{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.cabecera h2{
+    text-align: center;
+    padding-right: 30%;
+}
+.cabecera p {
+    text-align: end;
+}
+h2{
+    text-align: center;
+}
+span{
+    background-color: transparent;
+    text-align: center;
+    line-height: 1.8;
+    display: block;
+
+}
+span p {
+    display: inline;
+    background-color: white;
+    padding-bottom: 2px 4px;
+}
+button {
+    display: block;
+    width: 100px;
+    margin: 10px auto 0 auto;
+}
+.tarjetasDestino{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 25px;
+}
+.miniTarjetas{
+    background-color: green;
+    border-radius: 25px;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.tarjetaVerde{
+    background-color: green;
+    width: auto;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.selector{
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    margin: 10px;
+}
+.selector label{
+    min-width: 130px;
+}
+
+.selector select{
+    flex: 1; 
+    padding: 5px;
+}
+.fechas{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+.grupoFecha{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+#enviar{
+    margin: auto;
+    padding: 8px 20px;
+    background-color: #2d9cdb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

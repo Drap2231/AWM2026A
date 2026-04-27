@@ -1,0 +1,79 @@
+html{
+    height: 100%;
+}
+body{
+    background-color: #1ba0e1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.img1{
+    background-color: white;
+    width: 80px;
+    height: 80px    ;
+    border-radius: 100%;
+}
+.CartaPrincipal{
+    background-color: #e3c800;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.Izquierda{
+    margin-right: 20px;
+    flex: 1;
+}
+.Derecha{
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10;
+}
+.Cabecera {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin: 10px;
+    margin-left: 200px; 
+    margin-right: 45px;
+}
+.Cuerpo{
+    background-color: white;
+    line-height: 1.5;
+    
+  
+}
+button{
+    margin-top: 10px;
+    width: 80px;
+    border-radius: 5px;
+}
+#ok{
+    display: flex;
+    flex-direction: row;
+  
+}
+.Verde{
+    background-color: green;
+    margin: 10px;
+    border-radius: 15%;
+    display: flex ;
+    flex-direction: column;
+    align-items: center;
+
+}
+#Busqueda{
+    background-color: green;
+    border-radius:10%;
+}
