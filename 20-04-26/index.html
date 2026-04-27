@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 id = "principal">Lista de Estudiantes<h1>
-        <div id="contenedor">
-
-        </div>
-    <button onclick="AgregarEstudiante()">Agregar</button>
-    <script src="./script.js"></script>
+    <h1 id = "principal">Lista de Estudiantes<h1></h1>
+    <form onsubmit="insertarEstudiante(event);">
+        <input type="text" placeholder="Ingrese un nombre" id = "txtnombre"name="nombre" required>
+        <input type="submit" value="Agregar">
+    </form>
+    <div id="contenedor"></div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
