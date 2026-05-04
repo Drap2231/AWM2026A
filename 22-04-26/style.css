@@ -1,0 +1,126 @@
+html{
+    height: 100%;
+}
+body{
+    background-color: #1ba0e1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Lugares{
+    background-color: #e3c800;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px;
+    display: flex;
+    
+;
+}
+
+.card-left{
+    min-width: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    flex: 1;
+}
+
+.card-right{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    flex: 3;
+    min-width: 0;
+    align-items: center;
+
+}
+
+.header{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    text-align: left;
+    width: 100%;
+    gap: 10px;
+    
+}
+
+.img1{
+    background-color: white;
+    border-radius: 50%;
+    object-fit: cover;
+    flex: 0 0 auto;
+}
+
+.Lugares .img1{
+    width: 110px;
+    height: 110px;
+}
+
+.Verde .img1{
+    width: 70px;
+    height: 70px;
+}
+
+
+.info{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 6px;
+}
+
+
+.likes{
+    margin-left: auto;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+
+.Descripcion{
+    background-color: #e6e6e6;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    overflow-wrap: break-word;
+    white-space: normal;
+    line-height: 0.8;
+}
+
+
+input{
+    margin-top: 10px;
+    border-radius: 20%;
+}
+
+.Lugares input[type="button"]{
+    align-self: flex-start;
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+    color: #333;
+    font-weight: bold;
+}
+#ok{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.Verde{
+    background-color: green;
+    margin: 10px;
+    border-radius: 15%;
+    display: flex ;
+    flex-direction: column;
+    align-items: center;
+
+}
+#Busqueda{
+    background-color: green;
+    border-radius:10%;
+}

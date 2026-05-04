@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Ranking de sitios turisticos</h1>
+<div class="contenedorTarjetas">
+    <div class="tarjeta" id="panecillo">
+        <div class="tarjetaContenido">
+                <img class="tarjetaImagen" alt="" src="./iconoMontaña.png">
+            <div class="tarjetaTexto">
+                <div class="tarjetaEncabezado">
+                    <h2 class="tarjetaTitulo">El Panecillo</h2>
+                    <h2 class="tarjetaLikes">1000 Likes</h2>
+                </div>
+                <h3 class="tarjetaCiudad">
+                    Quito, Ecuador
+                </h3>
+                <p class="tarjetaInfo">
+                    <span>
+                    <strong>El Panecillo</strong> es una elevacion natural de 3.000 metros obre el nivel del mar. (200 metros mas alto que el promedio de la ciudad de Quito)
+                    </span>
+                </p>
+            </div>
+        </div>
+        <button type="button" class="btnLike">Like</button>
+    </div>
+
+    <div class="tarjeta" id="mitadDelMundo">
+        <div class="tarjetaContenido">
+                <img class="tarjetaImagen" alt="" src="./iconoMontaña.png">
+            <div class="tarjetaTexto">
+                <div class="tarjetaEncabezado">
+                    <h2 class="tarjetaTitulo">Mitad del mundo</h2>
+                    <h2 class="tarjetaLikes">980 Likes</h2>
+                </div>
+                <h3 class="tarjetaCiudad">
+                    Quito, Ecuador
+                </h3>
+                <p class="tarjetaInfo">
+                    <span>
+                    <strong>El Panecillo</strong> es una elevacion natural de 3.000 metros obre el nivel del mar. (200 metros mas alto que el promedio de la ciudad de Quito)
+                    </span>
+                </p>
+            </div>
+        </div>
+        <button type="button" class="btnLike">Like</button>
+    </div>
+
+    <div class="contenedorTarjetas" id="destinos">
+        <div class="tarjeta">
+            <div class="tarjetaEncabezado">
+                <h2 class="tarjetaTitulo">Destino preferido:</h2>
+            </div>
+            <img class="tarjetaImagen" alt="" src="./iconoMontaña.png">
+        </div>
+        <div class="tarjeta">
+            <div class="tarjetaEncabezado">
+                <h2 class="tarjetaTitulo">Destino más cercano:</h2>
+            </div>
+            <img class="tarjetaImagen" alt="" src="./iconoMontaña.png">
+        </div>
+        <div class="tarjeta">
+            <div class="tarjetaEncabezado">
+                <h2 class="tarjetaTitulo">Destino más económico</h2>
+            </div>
+            <img class="tarjetaImagen" alt="" src="./iconoMontaña.png">
+        </div>
+    </div>
+
+    <div class="tarjeta" id="viajar">
+        <form id="frmViajar">
+            <h3>¡Quiero viajar a este sitio!</h3>
+            <div class="itemFormulario">
+                <label for="selSitio">Sitio turístico: </label>
+                <select id="selSitio">
+                    <option value="panecillo">Panecillo</option>
+                    <option value="mitadDelMundo">Mitad del mundo</option>
+                    <option value="montanita">Montañita</option>
+                </select>
+            </div>
+            <div class="itemFormulario">
+                <div>
+                <label for="fechaInicio">Fecha inicio: </label>
+                <input type="date" id="fechaInicio">
+                </div>
+                <div>
+                <label for="fechaFin">Fecha fin: </label>
+                <input type="date" id="fechaFin">
+                </div>
+            </div>
+            <div class="itemFormulario">
+                <button type="submit"> Enviar </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
