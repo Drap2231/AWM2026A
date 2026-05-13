@@ -16,12 +16,21 @@ const EstudianteFormulario = (props) => {
         onAgregar(nuevoEstudiante)
         setErrorNombre("")
         setErrorEdad("")
+        setNuevoEstudiante ({id:"", nombre:"", edad: 0, url: ""})
+      }
+      if(nuevoEstudiante.nombre.length<=7){
+        setErrorNombre("oK")
       }
       else{
-        setErrorNombre("oK")
-         setErrorEdad("oki")
+        setErrorNombre("")
+     }
+     if(nuevoEstudiante.edad.value < 18){
+        setErrorEdad("Agrega bien la edad tonto")
+     }
+      else{
+        setErrorEdad("")
       }
-    }
+      }
     
     return (
      <form onSubmit={handlerSubmit}>
