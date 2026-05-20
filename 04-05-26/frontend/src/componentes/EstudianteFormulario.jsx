@@ -9,10 +9,10 @@ const EstudianteFormulario = (props) => {
   })
   const [errorNombre, setErrorNombre] = useState("")
   const [errorEdad, setErrorEdad] = useState("")
-  const navegar = useNavigate()
+  const navegar = useNavigate()//hook para navegar entre direccion de fronend
   const handlerSubmit = (e) => {
     e.preventDefault();
-    console.log("Hola")
+
     if ((nuevoEstudiante.nombre.length >= 8) && (nuevoEstudiante.edad >= 18)) {
 
       onAgregar(nuevoEstudiante)

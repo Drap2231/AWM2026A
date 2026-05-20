@@ -7,3 +7,9 @@ export const api = axios.create(
         
     }
 );
+/*
+1 crea un nuevo componente funcional detalleestudiante.jsx
+2 Agregar una nueva ruta en la tabla en app.jsx /estudiante/:id/detalle
+3solicitar al backend la informacion del estudiante con un get
+4 redireccionamos de estudiantepage hacia detaleEstudiante usando usenavigate
+*/

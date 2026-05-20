@@ -5,7 +5,7 @@ import EstudianteFormulario from "../componentes/EstudianteFormulario";
 //import axios from 'axios';
 //import {api} from "../utilidades/api"
 import { useEstudiante } from "../gatillos/useEstudiante";
-
+import { useNavigate } from "react-router-dom";
 const EstudiantePagina = (props) => {
   //1er paso
   //const [estudiantes, setEstudiantes] = useState([]);
@@ -29,7 +29,7 @@ const EstudiantePagina = (props) => {
 
   console.log("renderizando...")
 
-  
+  const navegar = useNavigate()
 
   return (
     <div>
@@ -55,12 +55,18 @@ const EstudiantePagina = (props) => {
       {
 
         estudiantes.map((estudiante) => {
-          return <Estudiante
-            key={estudiante.id}
+          return (<div key={estudiante.id}>
+            
+           <Estudiante
+            
             nombre={estudiante.nombre}
             edad={estudiante.edad}
             url={estudiante.url}
+            
           />
+          <button onClick={()=> navegar(`/estudiantes/${estudiante.id}/detalle`)}>Detalle</button>
+          <button>eliminar</button>
+          </div>)
         })
       }
 

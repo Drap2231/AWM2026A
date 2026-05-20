@@ -19,5 +19,8 @@ export const useEstudiante = () => {
       .catch((err) => console.log(err))
   }
     return{estudiantes, agregarEstudiante}
-
+  const eliminarEstudiante = () => {
+    api.delete(`/estudiantes/${id}`)
+    .then(()=> )
+  } 
 }
