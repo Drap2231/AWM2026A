@@ -1,22 +1,26 @@
 import { useState } from "react";
+import {useNavigate} from "react-router-dom"
 const EstudianteFormulario = (props) => {
   const { onAgregar } = props;
   const [nuevoEstudiante, setNuevoEstudiante] = useState({
-    id: "",
     nombre: "",
     edad: 0,
     url: ""
   })
   const [errorNombre, setErrorNombre] = useState("")
   const [errorEdad, setErrorEdad] = useState("")
+  const navegar = useNavigate()//hook para navegar entre direccion de fronend
   const handlerSubmit = (e) => {
     e.preventDefault();
-    if ((nuevoEstudiante.nombre.length >= 8) && (nuevoEstudiante.edad.value >= 18)) {
+
+    if ((nuevoEstudiante.nombre.length >= 8) && (nuevoEstudiante.edad >= 18)) {
 
       onAgregar(nuevoEstudiante)
+      console.log(nuevoEstudiante)
       setErrorNombre("")
       setErrorEdad("")
       setNuevoEstudiante({ id: "", nombre: "", edad: 0, url: "" })
+      navegar("/estudiantes")
     }
     if (nuevoEstudiante.nombre.length <= 7) {
       setErrorNombre("oK")
@@ -24,7 +28,7 @@ const EstudianteFormulario = (props) => {
     else {
       setErrorNombre("")
     }
-    if (nuevoEstudiante.edad.value < 18) {
+    if (nuevoEstudiante.edad < 18) {
       setErrorEdad("Agrega bien la edad tonto")
     }
     else {
