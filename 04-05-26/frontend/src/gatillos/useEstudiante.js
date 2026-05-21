@@ -21,6 +21,6 @@ export const useEstudiante = () => {
     return{estudiantes, agregarEstudiante}
   const eliminarEstudiante = () => {
     api.delete(`/estudiantes/${id}`)
-    .then(()=> )
+    
   } 
 }
