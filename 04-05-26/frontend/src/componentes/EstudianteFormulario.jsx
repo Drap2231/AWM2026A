@@ -1,7 +1,8 @@
-import { useState } from "react";
-import {useNavigate} from "react-router-dom"
+import { useState, useEffect } from "react";
+import {useNavigate, useParams} from "react-router-dom"
+import { api } from "../utilidades/api";
 const EstudianteFormulario = (props) => {
-  const { onAgregar } = props;
+  const { onAgregar, onEditar } = props;
   const [nuevoEstudiante, setNuevoEstudiante] = useState({
     nombre: "",
     edad: 0,
@@ -10,32 +11,43 @@ const EstudianteFormulario = (props) => {
   const [errorNombre, setErrorNombre] = useState("")
   const [errorEdad, setErrorEdad] = useState("")
   const navegar = useNavigate()//hook para navegar entre direccion de fronend
+  const {id} = useParams()
+  useEffect(() => {
+    api.get(`/estudiantes/${id}`)
+        .then(res => setNuevoEstudiante(res.data))
+        .catch(err => console.log(err));
+}, [id]);
+  const editando = !!id;
   const handlerSubmit = (e) => {
     e.preventDefault();
-
-    if ((nuevoEstudiante.nombre.length >= 8) && (nuevoEstudiante.edad >= 18)) {
-
-      onAgregar(nuevoEstudiante)
-      console.log(nuevoEstudiante)
-      setErrorNombre("")
-      setErrorEdad("")
-      setNuevoEstudiante({ id: "", nombre: "", edad: 0, url: "" })
-      navegar("/estudiantes")
-    }
-    if (nuevoEstudiante.nombre.length <= 7) {
-      setErrorNombre("oK")
-    }
-    else {
-      setErrorNombre("")
-    }
-    if (nuevoEstudiante.edad < 18) {
-      setErrorEdad("Agrega bien la edad tonto")
-    }
-    else {
-      setErrorEdad("")
-    }
-  }
-
+    
+      if ((nuevoEstudiante.nombre.length >= 8) && (nuevoEstudiante.edad >= 18)) {
+        if (editando){
+          onEditar(nuevoEstudiante)
+          navegar(`/estudiantes/${nuevoEstudiante.id}/detalle`)
+        }
+        else{
+          onAgregar(nuevoEstudiante)
+          console.log(nuevoEstudiante)
+          setErrorNombre("")
+          setErrorEdad("")
+          setNuevoEstudiante({ id: "", nombre: "", edad: 0, url: "" })
+          navegar("/estudiantes")
+        }
+      }
+      if (nuevoEstudiante.nombre.length <= 7) {
+        setErrorNombre("oK")
+      }
+      else {
+        setErrorNombre("")
+      }
+      if (nuevoEstudiante.edad < 18) {
+        setErrorEdad("Agrega bien la edad tonto")
+      }
+      else {
+        setErrorEdad("")
+      }
+}
   return (
     <form onSubmit={handlerSubmit}>
       <div>
