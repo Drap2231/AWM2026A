@@ -1,5 +1,9 @@
 {
+<<<<<<<< HEAD:21-05-26/Carrion_Daniel_Bimestral - copia/package.json
   "name": "carrion-daniel-bimestral",
+========
+  "name": "frontend",
+>>>>>>>> 22cd8f4c2eb5ed65209f27021c43be70f5cbcd45:20-05-26/frontend/package.json
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,8 +14,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<<< HEAD:21-05-26/Carrion_Daniel_Bimestral - copia/package.json
     "axios": "^1.16.1",
     "json-server": "^1.0.0-beta.15",
+========
+>>>>>>>> 22cd8f4c2eb5ed65209f27021c43be70f5cbcd45:20-05-26/frontend/package.json
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.15.1"

@@ -1,0 +1,10 @@
+import { useEffect, useState } from "react";
+import {lstcursos} from "../utilidades/data";
+const useCurso = () => {
+    const [cursos, setCursos] = useState(lstcursos)
+    const agregarCurso = (nuevoCurso) => {
+        setCursos(prev=>([...prev, nuevoCurso]))
+    }
+    return {cursos, agregarCurso}
+}
+export default useCurso
