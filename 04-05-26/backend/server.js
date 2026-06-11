@@ -6,7 +6,9 @@ const allEstudianteRoutes = require("./routes/estudiante.routes");
 /* res = es un objeto que contiene los metodos para responder a un la solicitud del cliente
 _ para cuando no ocupamos alguno
 Debe existir un cierre en el ciclo solicitud respuesta
+
 */
+app.use(express.json())
 allEstudianteRoutes(app);
 app.listen (puerto, ()=>console.log("El servidor esta escuchando en el puerto:", puerto))
 /* Carpeta config
