@@ -6,7 +6,7 @@ module.exports.getAllEstudiantes = (_, response) => {
         .catch(err => response.json(err));
 };
 
-/*module.exports.getEstudianteById = (request, response) => {
+module.exports.getEstudianteById = (request, response) => {
     const { id } = request.params;
     Estudiante.findByPk(id)
         .then(estudiante => {
@@ -37,4 +37,4 @@ module.exports.deleteEstudiante = (request, response) => {
     Estudiante.destroy({ where: { id } })
         .then(() => response.json({ msg: "Estudiante eliminado correctamente" }))
         .catch(err => response.json(err));
-};*/
+};
