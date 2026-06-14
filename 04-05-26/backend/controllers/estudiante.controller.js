@@ -21,7 +21,7 @@ module.exports.createEstudiante = (request, response) => {
 };
 module.exports.updateEstudiante = (request, response) => {
     const {id} = request.params;
-    Estudiante.findByIdAndUpdate(id, request.body{ new: true})
+    Estudiante.findByIdAndUpdate(id, request.body, { new: true})
         .then(estudiante => {
             response.json(estudiante);
         })
