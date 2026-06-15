@@ -3,15 +3,15 @@ const EstudianteSchema = new mongoose.Schema(
     {
         nombre: {
             type: String,
-            required : [
-                true, 
+            required: [
+                true,
                 "El nombre es requerido OwO"
             ]
         },
         edad: {
             type: Number,
-            required : [
-                true, 
+            required: [
+                true,
                 "La edad es requerida UwU"
             ]
         },
@@ -20,6 +20,8 @@ const EstudianteSchema = new mongoose.Schema(
 
         }
     }
+    ,
+    { versionKey: false }
 );
 const Estudiante = mongoose.model("Estudiante", EstudianteSchema);
 module.exports = Estudiante;
