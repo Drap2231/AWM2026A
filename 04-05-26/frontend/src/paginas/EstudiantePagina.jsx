@@ -25,11 +25,9 @@ const EstudiantePagina = (props) => {
       })
       .catch((err)=>console.log(err))
   }, [])*/
-<<<<<<< HEAD
-  const{estudiantes, onEliminar} = props;
-=======
+
   const { estudiantes, onEliminar } = props;
->>>>>>> 22cd8f4c2eb5ed65209f27021c43be70f5cbcd45
+
 
   console.log("renderizando...")
 
@@ -54,11 +52,9 @@ const EstudiantePagina = (props) => {
       />
      */}
       <h1>Estudiantes</h1>
-<<<<<<< HEAD
-      <button onClick={() => navegar("/nuevo")}>+</button>
-=======
+
       <button onClick={()=>navegar("/nuevo")}>+</button>
->>>>>>> 22cd8f4c2eb5ed65209f27021c43be70f5cbcd45
+
       {/*<EstudianteFormulario onAgregar={agregarEstudiante} />*/}
       <hr />
       {
@@ -73,12 +69,10 @@ const EstudiantePagina = (props) => {
             url={estudiante.url}
             
           />
-          <button onClick={()=> navegar(`/estudiantes/${estudiante.id}/detalle`)}>Detalle</button>
-<<<<<<< HEAD
-          <button onClick={()=> onEliminar(estudiante.id)} >eliminar</button>
-=======
-          <button onClick={()=> onEliminar(estudiante.id)}>eliminar</button>
->>>>>>> 22cd8f4c2eb5ed65209f27021c43be70f5cbcd45
+          <button onClick={()=> navegar(`/estudiantes/${estudiante._id}/detalle`)}>Detalle</button>
+
+          <button onClick={()=> onEliminar(estudiante._id)}>eliminar</button>
+
           </div>)
         })
       }

@@ -28,6 +28,7 @@ module.exports.updateEstudiante = (request, response) => {
         .catch(err => response.json(err));
 }
 module.exports.deleteEstudiante = (request, response) => {
+    
     const { id } = request.params;
     Estudiante.findByIdAndDelete(id)
         .then(() => response.json({ msg: "Estudiante eliminado correctamente" }))

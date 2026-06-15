@@ -2,13 +2,15 @@ require ("./config/mongoose.config")
 const express = require("express")
 const app = express()
 const puerto = 8000
+const cors = require('cors');
 const allEstudianteRoutes = require("./routes/estudiante.routes");
-/* res = es un objeto que contiene los metodos para responder a un la solicitud del cliente
+/* res = es un objeto que contiene los metodos para responder a un la solicitud del clie
 _ para cuando no ocupamos alguno
 Debe existir un cierre en el ciclo solicitud respuesta
 
 */
 app.use(express.json())
+app.use(cors());    
 allEstudianteRoutes(app);
 app.listen (puerto, ()=>console.log("El servidor esta escuchando en el puerto:", puerto))
 /* Carpeta config
@@ -30,6 +32,11 @@ se definen la entidades que se mapean aprtir de la base de datos en donde se enc
 se encarga de las validaciones de los campos
  */
 /* Carpeta middlewear
+es una funcion que se ejecuta antes que otra
+van antes de las rutas y desppues de la importacion
+-creados por nosotros
+-sacados de express
+se llama en rutas antes de llamar al controlador
  */
 /* 
 para exportar se hace: module.exports = contenidoAExportar
@@ -38,3 +45,5 @@ para importar se hace: const express = require("express")
 /*
     Mongo db guarda la informacion en un documento json un grupo de documento se los conoce como colecciones mongodb conpass no es el servidor
  */
+/* CORS (Cross-Origin Resursce sharing
+)*/
