@@ -69,9 +69,9 @@ const EstudiantePagina = (props) => {
             url={estudiante.url}
             
           />
-          <button onClick={()=> navegar(`/estudiantes/${estudiante._id}/detalle`)}>Detalle</button>
+          <button onClick={()=> navegar(`/estudiantes/${estudiante.id}/detalle`)}>Detalle</button>
 
-          <button onClick={()=> onEliminar(estudiante._id)}>eliminar</button>
+          <button onClick={()=> onEliminar(estudiante.id)}>eliminar</button>
 
           </div>)
         })
