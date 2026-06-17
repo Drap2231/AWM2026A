@@ -1,0 +1,17 @@
+1 Autenticacion
+     1.1 Registro
+          I Registro (mediante un formulario)
+         II Post
+        III Validar campos (duplicados)
+         IV Hash del password
+          V Almecana el Hash
+     2.2 Inicio de sesion
+          I Formulario de log In
+         II Post
+        III Recuperar inf del usuario
+         IV  comparar hash del password
+La validacion se realiza en el backend y en el fronetd
+las validacion de campo requerido se realiza en el fornetd y backen pero en el backend se realiza a diferentes niveles
+    -base de datos
+    -modelos
+    -y en los controllers mediante la carpeta services

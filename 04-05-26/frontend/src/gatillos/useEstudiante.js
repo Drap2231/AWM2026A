@@ -43,7 +43,7 @@ export const useEstudiante = () => {
     };
 
     const editarEstudiante = (estudianteEditado) => {
-        api.put(`/estudiantes/${estudianteEditado.id}`, estudianteEditado)
+        api.put(`/estudiantes/${estudianteEditado._id||estudianteEditado.id}`, estudianteEditado)
             .then((res) => {
 
                 const actualizado = {

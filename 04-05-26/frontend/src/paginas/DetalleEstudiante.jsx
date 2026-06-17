@@ -21,7 +21,6 @@ const DetalleEstudiante = () => {
             {estudiante.url?<a href="{estudiante.url}">Home Page</a> : <span>Mal</span> }
 
             <br />
-            <button>Editar</button>
 
             <button onClick={()=> navegar(`/estudiar/${id}/editar`)}>Editar</button>
 

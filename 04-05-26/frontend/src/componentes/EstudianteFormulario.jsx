@@ -24,7 +24,7 @@ const EstudianteFormulario = (props) => {
       if ((nuevoEstudiante.nombre.length >= 8) && (nuevoEstudiante.edad >= 18)) {
         if (editando){
           onEditar(nuevoEstudiante)
-          navegar(`/estudiantes/${nuevoEstudiante.id}/detalle`)
+          navegar(`/estudiantes`)
         }
         else{
           onAgregar(nuevoEstudiante)
