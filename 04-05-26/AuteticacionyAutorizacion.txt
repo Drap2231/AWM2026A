@@ -15,3 +15,5 @@ las validacion de campo requerido se realiza en el fornetd y backen pero en el b
     -base de datos
     -modelos
     -y en los controllers mediante la carpeta services
+Modulo de autenticacion
+-  npm install bcryptjs

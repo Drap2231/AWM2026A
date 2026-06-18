@@ -72,7 +72,12 @@ const EstudianteFormulario = (props) => {
       <div>
         <input type="submit" value="Agregar" />
       </div>
+      <div>
+        <label htmlFor="est_email">Email: </label>
+        <input type="email" name="est_email" id="est_email" value={nuevoEstudiante.email} onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, edad: e.target.value })} placeholder="Ingresa Edad" required />
+      </div>
     </form>
+    
 
   )
 }

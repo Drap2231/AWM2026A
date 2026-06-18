@@ -18,6 +18,14 @@ const EstudianteSchema = new mongoose.Schema(
         url: {
             type: String,
 
+        },
+        password : {
+            type: String,
+            required: [true, "Password is required" ]
+        },
+         email : {
+            type: String,
+            required: [true, "email is required" ]
         }
     }
     ,
