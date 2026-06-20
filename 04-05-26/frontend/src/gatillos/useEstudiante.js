@@ -28,6 +28,7 @@ export const useEstudiante = () => {
                 };
 
                 setEstudiantes(prev => [...prev, estudiante]);
+                 return res;
             })
             .catch((err) => console.log(err));
     };

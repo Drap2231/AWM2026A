@@ -3,13 +3,16 @@ import {useNavigate, useParams} from "react-router-dom"
 import { api } from "../utilidades/api";
 const EstudianteFormulario = (props) => {
   const { onAgregar, onEditar } = props;
-  const [nuevoEstudiante, setNuevoEstudiante] = useState({
+  const [estudianteNuevo, setEstudianteNuevo] = useState({
     nombre: "",
-    edad: 0,
-    url: ""
-  })
+    edad: "",
+    url: "",
+    email:"",
+    password:""
+  });
   const [errorNombre, setErrorNombre] = useState("")
   const [errorEdad, setErrorEdad] = useState("")
+  const [errorEmail, setErrorEmail] = useState("");
   const navegar = useNavigate()//hook para navegar entre direccion de fronend
   const {id} = useParams()
   useEffect(() => {
@@ -28,11 +31,25 @@ const EstudianteFormulario = (props) => {
         }
         else{
           onAgregar(nuevoEstudiante)
-          console.log(nuevoEstudiante)
-          setErrorNombre("")
-          setErrorEdad("")
-          setNuevoEstudiante({ id: "", nombre: "", edad: 0, url: "" })
-          navegar("/estudiantes")
+    .then(() => {
+      setErrorEmail("");
+      setErrorNombre("");
+      setErrorEdad("");
+      setNuevoEstudiante({
+        id: "",
+        nombre: "",
+        edad: 0,
+        url: "",
+        email: "",
+        password: ""
+      });
+      navegar("/estudiantes/login");
+      })
+      .catch((err) => {
+      setErrorEmail(
+        err.response?.data?.message || "Error al registrar"
+        );
+      });
         }
       }
       if (nuevoEstudiante.nombre.length <= 7) {
@@ -51,7 +68,6 @@ const EstudianteFormulario = (props) => {
   return (
     <form onSubmit={handlerSubmit}>
       <div>
-
         <label htmlFor="est_Nombre">Nombre: </label>
         <input type="text" name="est_Nombre" id="est_Nombre" value={nuevoEstudiante.nombre} onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, nombre: e.target.value })} placeholder="Ingresa Nombre" required />
         <div>
@@ -73,12 +89,23 @@ const EstudianteFormulario = (props) => {
         <input type="submit" value="Agregar" />
       </div>
       <div>
-        <label htmlFor="est_email">Email: </label>
-        <input type="email" name="est_email" id="est_email" value={nuevoEstudiante.email} onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, edad: e.target.value })} placeholder="Ingresa Edad" required />
+        <label htmlFor="txtEmail">Email: </label>
+        <input type="email" id="txtEmail" name="email" value={estudianteNuevo.email} onChange={(e) => setEstudianteNuevo({ ...estudianteNuevo, email: e.target.value,})} placeholder="Ingresa la Email" required/>
+      </div>
+      <div>
+        {errorEmail}
+      </div>
+      <div>
+        <label htmlFor="txtPassword">Password: </label>
+        <input type="password" id="txtPassword" name="password" value={estudianteNuevo.password} onChange={(e) => setEstudianteNuevo({ ...estudianteNuevo, password: e.target.value, })} placeholder="Ingresa la password" required/>
+      </div>
+      
+      <div>
+        <input type="submit" value={id ? "Actualizar" : "Agregar"} />
       </div>
     </form>
     
-
+        
   )
 }
 export default EstudianteFormulario
