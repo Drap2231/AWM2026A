@@ -1,49 +1,60 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../utils/api";
-const EstudianteLogin = () => {
+const EstudianteLogin = (props) => {
+  const { onLogin } = props;
   const navegar = useNavigate();
 
-const [errorLogin, setErrorLogin] = useState("");
+  const [errorLogin, setErrorLogin] = useState("");
 
   const [estudianteLogin, setEstudianteLogin] = useState({
-    email:"",
-    password:""
+    email: "",
+    password: "",
   });
-  
- const loogearEstudiante = (e) => {
-  e.preventDefault();
 
-  api.post("/estudiantes/login", estudianteLogin)
-    .then((res) => {
-      console.log(res.data);
+  const loogearEstudiante = async (e) => {
+    e.preventDefault();
 
+    const resultado = await onLogin(estudianteLogin);
+
+    if (resultado.success) {
       setErrorLogin("");
-
       navegar("/estudiantes");
-    })
-    .catch((err) => {
-      setErrorLogin(
-        err.response?.data?.message || "Error al iniciar sesión"
-      );
-
-      console.log(err);
-    });
-};
-
+    } else {
+      setErrorLogin(resultado.message);
+    }
+  };
   return (
     <form onSubmit={loogearEstudiante}>
       <div>
         <label htmlFor="txtEmail">Email: </label>
-        <input type="email" id="txtEmail" name="email" value={estudianteLogin.email} onChange={(e) => setEstudianteLogin({ ...estudianteLogin, email: e.target.value,})} placeholder="Ingresa la Email" required/>
+        <input
+          type="email"
+          id="txtEmail"
+          name="email"
+          value={estudianteLogin.email}
+          onChange={(e) =>
+            setEstudianteLogin({ ...estudianteLogin, email: e.target.value })
+          }
+          placeholder="Ingresa la Email"
+          required
+        />
       </div>
-            <div>
+      <div>
         <label htmlFor="txtPassword">Password: </label>
-        <input type="password" id="txtPassword" name="password" value={estudianteLogin.password} onChange={(e) => setEstudianteLogin({ ...estudianteLogin, password: e.target.value,})} placeholder="Ingresa la password" required/>
+        <input
+          type="password"
+          id="txtPassword"
+          name="password"
+          value={estudianteLogin.password}
+          onChange={(e) =>
+            setEstudianteLogin({ ...estudianteLogin, password: e.target.value })
+          }
+          placeholder="Ingresa la password"
+          required
+        />
       </div>
-    <div>
-  {errorLogin}
-    </div>
+      <div>{errorLogin}</div>
       <div>
         <input type="submit" value={"Login"} />
       </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {useNavigate, useParams} from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../utilidades/api";
 const EstudianteFormulario = (props) => {
   const { onAgregar, onEditar } = props;
@@ -7,105 +7,143 @@ const EstudianteFormulario = (props) => {
     nombre: "",
     edad: "",
     url: "",
-    email:"",
-    password:""
+    email: "",
+    password: "",
   });
-  const [errorNombre, setErrorNombre] = useState("")
-  const [errorEdad, setErrorEdad] = useState("")
+  const [errorNombre, setErrorNombre] = useState("");
+  const [errorEdad, setErrorEdad] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
-  const navegar = useNavigate()//hook para navegar entre direccion de fronend
-  const {id} = useParams()
+  const navegar = useNavigate(); //hook para navegar entre direccion de fronend
+  const { id } = useParams();
   useEffect(() => {
-    api.get(`/estudiantes/${id}`)
-        .then(res => setNuevoEstudiante(res.data))
-        .catch(err => console.log(err));
-}, [id]);
+    api
+      .get(`/estudiantes/${id}`)
+      .then((res) => setNuevoEstudiante(res.data))
+      .catch((err) => console.log(err));
+  }, [id]);
   const editando = !!id;
   const handlerSubmit = (e) => {
     e.preventDefault();
-    
-      if ((nuevoEstudiante.nombre.length >= 8) && (nuevoEstudiante.edad >= 18)) {
-        if (editando){
-          onEditar(nuevoEstudiante)
-          navegar(`/estudiantes`)
-        }
-        else{
-          onAgregar(nuevoEstudiante)
-    .then(() => {
-      setErrorEmail("");
+
+    if (nuevoEstudiante.nombre.length >= 8 && nuevoEstudiante.edad >= 18) {
+      if (editando) {
+        onEditar(nuevoEstudiante);
+        navegar(`/estudiantes`);
+      } else {
+        onAgregar(nuevoEstudiante)
+          .then(() => {
+            setErrorEmail("");
+            setErrorNombre("");
+            setErrorEdad("");
+            setNuevoEstudiante({
+              id: "",
+              nombre: "",
+              edad: 0,
+              url: "",
+              email: "",
+              password: "",
+            });
+            navegar("/estudiantes/login");
+          })
+          .catch((err) => {
+            setErrorEmail(err.response?.data?.message || "Error al registrar");
+          });
+      }
+    }
+    if (nuevoEstudiante.nombre.length <= 7) {
+      setErrorNombre("oK");
+    } else {
       setErrorNombre("");
+    }
+    if (nuevoEstudiante.edad < 18) {
+      setErrorEdad("Agrega bien la edad tonto");
+    } else {
       setErrorEdad("");
-      setNuevoEstudiante({
-        id: "",
-        nombre: "",
-        edad: 0,
-        url: "",
-        email: "",
-        password: ""
-      });
-      navegar("/estudiantes/login");
-      })
-      .catch((err) => {
-      setErrorEmail(
-        err.response?.data?.message || "Error al registrar"
-        );
-      });
-        }
-      }
-      if (nuevoEstudiante.nombre.length <= 7) {
-        setErrorNombre("oK")
-      }
-      else {
-        setErrorNombre("")
-      }
-      if (nuevoEstudiante.edad < 18) {
-        setErrorEdad("Agrega bien la edad tonto")
-      }
-      else {
-        setErrorEdad("")
-      }
-}
+    }
+  };
   return (
     <form onSubmit={handlerSubmit}>
       <div>
         <label htmlFor="est_Nombre">Nombre: </label>
-        <input type="text" name="est_Nombre" id="est_Nombre" value={nuevoEstudiante.nombre} onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, nombre: e.target.value })} placeholder="Ingresa Nombre" required />
-        <div>
-          {errorNombre}
-        </div>
+        <input
+          type="text"
+          name="est_Nombre"
+          id="est_Nombre"
+          value={nuevoEstudiante.nombre}
+          onChange={(e) =>
+            setNuevoEstudiante({ ...nuevoEstudiante, nombre: e.target.value })
+          }
+          placeholder="Ingresa Nombre"
+          required
+        />
+        <div>{errorNombre}</div>
       </div>
       <div>
         <label htmlFor="est_edad">Edad: </label>
-        <input type="number" name="est_edad" id="est_edad" value={nuevoEstudiante.edad} onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, edad: e.target.value })} placeholder="Ingresa Edad" required />
-        <div>
-          {errorEdad}
-        </div>
+        <input
+          type="number"
+          name="est_edad"
+          id="est_edad"
+          value={nuevoEstudiante.edad}
+          onChange={(e) =>
+            setNuevoEstudiante({ ...nuevoEstudiante, edad: e.target.value })
+          }
+          placeholder="Ingresa Edad"
+          required
+        />
+        <div>{errorEdad}</div>
       </div>
       <div>
         <label htmlFor="est_url">Url: </label>
-        <input type="text" name="est_url" id="est_url" value={nuevoEstudiante.url} onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, url: e.target.value })} placeholder="Ingresa url Home page" required />
+        <input
+          type="text"
+          name="est_url"
+          id="est_url"
+          value={nuevoEstudiante.url}
+          onChange={(e) =>
+            setNuevoEstudiante({ ...nuevoEstudiante, url: e.target.value })
+          }
+          placeholder="Ingresa url Home page"
+          required
+        />
       </div>
       <div>
         <input type="submit" value="Agregar" />
       </div>
       <div>
         <label htmlFor="txtEmail">Email: </label>
-        <input type="email" id="txtEmail" name="email" value={estudianteNuevo.email} onChange={(e) => setEstudianteNuevo({ ...estudianteNuevo, email: e.target.value,})} placeholder="Ingresa la Email" required/>
+        <input
+          type="email"
+          id="txtEmail"
+          name="email"
+          value={estudianteNuevo.email}
+          onChange={(e) =>
+            setEstudianteNuevo({ ...estudianteNuevo, email: e.target.value })
+          }
+          placeholder="Ingresa la Email"
+          required
+        />
       </div>
-      <div>
-        {errorEmail}
-      </div>
+      <div>{errorEmail}</div>
       <div>
         <label htmlFor="txtPassword">Password: </label>
-        <input type="password" id="txtPassword" name="password" value={estudianteNuevo.password} onChange={(e) => setEstudianteNuevo({ ...estudianteNuevo, password: e.target.value, })} placeholder="Ingresa la password" required/>
+        <input
+          type="password"
+          id="txtPassword"
+          name="password"
+          value={estudianteNuevo.password}
+          onChange={(e) =>
+            setEstudianteNuevo({ ...estudianteNuevo, password: e.target.value })
+          }
+          placeholder="Ingresa la password"
+          required
+        />
       </div>
-      
+
       <div>
         <input type="submit" value={id ? "Actualizar" : "Agregar"} />
       </div>
     </form>
-    
-        
-  )
-}
-export default EstudianteFormulario
+  );
+};
+export default EstudianteFormulario;
