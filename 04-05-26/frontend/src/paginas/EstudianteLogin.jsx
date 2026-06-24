@@ -20,6 +20,7 @@ const EstudianteLogin = (props) => {
     if (resultado.success) {
       setErrorLogin("");
       navegar("/estudiantes");
+      
     } else {
       setErrorLogin(resultado.message);
     }

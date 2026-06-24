@@ -69,6 +69,7 @@ export const useEstudiante = () => {
         return {
           success: true,
           data: res.data,
+          token : res.t
         };
       })
       .catch((err) => {

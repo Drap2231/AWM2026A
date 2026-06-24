@@ -1,7 +1,7 @@
 
 const jwt = require("jsonwebtoken");
 const Estudiante = require("../models/estudiante.model");
-
+const jwt_secret = "ok123"
 module.exports.protect = async (req, res, next) => {
     let token;
     if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
@@ -14,11 +14,11 @@ module.exports.protect = async (req, res, next) => {
             console.log('Token extraído: ', token);
 
             // se verifica el token
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            const decoded = jwt.verify(token, jwt_secret);
 
             // agregamos a cada petición información del usuario - excepto el password
             // (recuperado con base en el _id contenido en el payload del token)
-            req.user = await User.findOne({ _id: decoded.id }).select("-password");
+            req.estudiante = await Estudiante.findOne({ _id: decoded.id }).select("-password");
 
             next();
         } catch (error) {
