@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../utilidades/api";
 const EstudianteFormulario = (props) => {
   const { onAgregar, onEditar } = props;
-  const [estudianteNuevo, setEstudianteNuevo] = useState({
+  const [nuevoEstudiante, setNuevoEstudiante] = useState({
     nombre: "",
     edad: "",
     url: "",
@@ -18,7 +18,13 @@ const EstudianteFormulario = (props) => {
   useEffect(() => {
     api
       .get(`/estudiantes/${id}`)
-      .then((res) => setNuevoEstudiante(res.data))
+      .then((res) =>
+        setNuevoEstudiante((prev) => ({
+        ...prev,
+        ...res.data,
+        password: "",
+  }))
+)
       .catch((err) => console.log(err));
   }, [id]);
   const editando = !!id;
@@ -29,6 +35,7 @@ const EstudianteFormulario = (props) => {
       if (editando) {
         onEditar(nuevoEstudiante);
         navegar(`/estudiantes`);
+
       } else {
         onAgregar(nuevoEstudiante)
           .then(() => {
@@ -108,17 +115,14 @@ const EstudianteFormulario = (props) => {
         />
       </div>
       <div>
-        <input type="submit" value="Agregar" />
-      </div>
-      <div>
         <label htmlFor="txtEmail">Email: </label>
         <input
           type="email"
           id="txtEmail"
           name="email"
-          value={estudianteNuevo.email}
+          value={nuevoEstudiante.email}
           onChange={(e) =>
-            setEstudianteNuevo({ ...estudianteNuevo, email: e.target.value })
+            setNuevoEstudiante({ ...nuevoEstudiante, email: e.target.value })
           }
           placeholder="Ingresa la Email"
           required
@@ -131,9 +135,9 @@ const EstudianteFormulario = (props) => {
           type="password"
           id="txtPassword"
           name="password"
-          value={estudianteNuevo.password}
+          value={nuevoEstudiante.password}
           onChange={(e) =>
-            setEstudianteNuevo({ ...estudianteNuevo, password: e.target.value })
+            setNuevoEstudiante({ ...nuevoEstudiante, password: e.target.value })
           }
           placeholder="Ingresa la password"
           required

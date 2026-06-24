@@ -19,18 +19,18 @@ export const useEstudiante = () => {
   }, []);
 
   const agregarEstudiante = (nuevoEstudiante) => {
-    api
+     return api
       .post("/estudiantes", nuevoEstudiante)
       .then((res) => {
-        const estudiante = {
-          ...res.data,
-          id: res.data._id || res.data.id,
-        };
+      const estudiante = {
+        ...res.data,
+        id: res.data._id || res.data.id,
+      };
 
-        setEstudiantes((prev) => [...prev, estudiante]);
-        return res;
-      })
-      .catch((err) => console.log(err));
+      setEstudiantes((prev) => [...prev, estudiante]);
+
+      return res;
+    });
   };
 
   const eliminarEstudiante = (id) => {
@@ -69,6 +69,7 @@ export const useEstudiante = () => {
         return {
           success: true,
           data: res.data,
+          token : res.t
         };
       })
       .catch((err) => {

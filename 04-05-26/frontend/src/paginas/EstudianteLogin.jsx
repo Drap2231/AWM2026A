@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { api } from "../utils/api";
+import { api } from "../utilidades/api";
 const EstudianteLogin = (props) => {
   const { onLogin } = props;
   const navegar = useNavigate();
@@ -20,6 +20,7 @@ const EstudianteLogin = (props) => {
     if (resultado.success) {
       setErrorLogin("");
       navegar("/estudiantes");
+      
     } else {
       setErrorLogin(resultado.message);
     }
