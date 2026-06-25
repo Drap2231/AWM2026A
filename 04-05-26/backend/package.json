@@ -14,12 +14,8 @@
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "express": "^5.2.1",
-<<<<<<< HEAD
-    "mongoose": "^9.7.2",
-=======
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.6.3",
->>>>>>> 6fc89461845a69764b3d24c3a4b47370019c7c73
+    "mongoose": "^9.7.2",
     "nodemon": "^3.1.14"
   },
   "keywords": []

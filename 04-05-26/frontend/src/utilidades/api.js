@@ -7,6 +7,14 @@ export const api = axios.create(
         
     }
 );
+/*api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+*/
+  return config;
 /*
 1 crea un nuevo componente funcional detalleestudiante.jsx
 2 Agregar una nueva ruta en la tabla en app.jsx /estudiante/:id/detalle

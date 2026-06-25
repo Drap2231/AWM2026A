@@ -17,7 +17,11 @@ const EstudianteFormulario = (props) => {
   const { id } = useParams();
   useEffect(() => {
     api
-      .get(`/estudiantes/${id}`)
+      .get(`/estudiantes/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) =>
         setNuevoEstudiante((prev) => ({
         ...prev,
