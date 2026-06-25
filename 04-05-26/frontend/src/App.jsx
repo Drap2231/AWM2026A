@@ -5,6 +5,8 @@ import HomePage from "./paginas/HomePage";
 import { useEstudiante } from "./gatillos/useEstudiante";
 import DetalleEstudiante from "./paginas/DetalleEstudiante";
 import EstudianteLogin from "./paginas/EstudianteLogin";
+import EstudianteFormulario from "./componentes/RutaProtegida";
+import RutaProtegida from "./componentes/RutaProtegida";
 function App() {
   const {
     estudiantes,
@@ -23,11 +25,11 @@ function App() {
       <Routes>
         <Route
           path="/estudiantes"
-          element={
+          element={<RutaProtegida>
             <EstudiantePagina
               estudiantes={estudiantes}
               onEliminar={eliminarEstudiante}
-            />
+            /></RutaProtegida>
           }
         ></Route>
         <Route
@@ -41,7 +43,7 @@ function App() {
         ></Route>
         <Route
           path="/estudiar/:id/editar"
-          element={<EstudianteFormulario onEditar={editarEstudiante} />}
+          element={<RutaProtegida><EstudianteFormulario onEditar={editarEstudiante} /></RutaProtegida>}
         ></Route>
         <Route
           path="/estudiantes/login"

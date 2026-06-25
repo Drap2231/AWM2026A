@@ -32,25 +32,14 @@ const EstudiantePagina = (props) => {
   console.log("renderizando...")
 
   const navegar = useNavigate()
-
+      const cerrarSesion = () => {
+        localStorage.removeItem("token");
+        navegar("/estudiantes/login");
+    };
   return (
     <div>
-      {/* <Estudiante 
-      nombre={"Daniel Carrion"} 
-      edad= {23} 
-      url = {"https://www.google.com"}
-      />
-        <Estudiante 
-      nombre={"Anaela Pozo"} 
-      edad= {21} 
-      url = {"https://www.google.com"}
-      />
-       <Estudiante 
-      nombre={"XD"} 
-      edad= {50} 
-      url = {"https://www.google.com"}
-      />
-     */}
+     <button onClick={()=>cerrarSesion()}>log out</button>
+    <br />
       <h1>Estudiantes</h1>
 
       <button onClick={()=>navegar("/nuevo")}>+</button>
