@@ -19,7 +19,7 @@ module.exports.protect = async (req, res, next) => {
             // agregamos a cada petición información del usuario - excepto el password
             // (recuperado con base en el _id contenido en el payload del token)
             req.estudiante = await Estudiante.findOne({ _id: decoded.id }).select("-password");
-
+        
             next();
         } catch (error) {
             res.status(401).json({ message: 'Not authorized!' });

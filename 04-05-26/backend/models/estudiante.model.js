@@ -26,7 +26,12 @@ const EstudianteSchema = new mongoose.Schema(
          email : {
             type: String,
             required: [true, "email is required" ]
-        }
+        },
+          rol : {
+            type: String,
+             required: [true, "rol is required" ]
+
+          }
     }
     ,
     { versionKey: false }
