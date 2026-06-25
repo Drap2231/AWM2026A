@@ -18,7 +18,6 @@ export const useEstudiante = () => {
       })
       .then((res) => {
         console.log("Respuesta estudiantes:", res.data);
-
         const datos = res.data.map((estudiante) => ({
           ...estudiante,
           id: estudiante._id || estudiante.id,

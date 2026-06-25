@@ -5,7 +5,6 @@ import HomePage from "./paginas/HomePage";
 import { useEstudiante } from "./gatillos/useEstudiante";
 import DetalleEstudiante from "./paginas/DetalleEstudiante";
 import EstudianteLogin from "./paginas/EstudianteLogin";
-import EstudianteFormulario from "./componentes/RutaProtegida";
 import RutaProtegida from "./componentes/RutaProtegida";
 function App() {
   const {

@@ -13,8 +13,9 @@ export const api = axios.create(
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-*/
-  return config;
+return config;
+  */
+  
 /*
 1 crea un nuevo componente funcional detalleestudiante.jsx
 2 Agregar una nueva ruta en la tabla en app.jsx /estudiante/:id/detalle
