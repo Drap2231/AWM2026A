@@ -1,6 +1,5 @@
 const Estudiante = require("../models/estudiante.model");
-const bcrypt = require("bcryptjs")
-const jwt = require("jsonwebtoken")
+
 //Generar jwt
 const jwt_secret = "ok123"
 const generateToken = (id, email, nombre, rol) => {
@@ -20,19 +19,17 @@ module.exports.getEstudianteById = (request, response) => {
         .catch(err => response.json(err));
 };
 module.exports.createEstudiante = async (request, response) => {
-    const { nombre, edad, url, password, email, rol } = request.body;
-    if (!nombre || !edad || !password || !email || !rol) {
-        response.status(400).json({ message: "todos son mandatorios" })
+    const { nombre, edad, url} = request.body;
+    if (!nombre || !edad ) {
+        response.status(400).json({ message: "Son mandatorios" })
     }
     else {
-        const estudianteFound = await Estudiante.findOne({ email })
+        const estudianteFound = await Estudiante.findOne({ nombre })
         if (estudianteFound) {
             response.status(400).json({ message: "Ya existe el estudiante tonto :v" })
         } else {
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(password, salt);
-            Estudiante.create({ nombre, edad, url, email, password: hashedPassword, rol })
-                .then(estudiante => response.json({ nombre: estudiante.nombre, edad: estudiante.edad, url: estudiante.url, email: estudiante.emai, rol: estudiante.rol }))
+            Estudiante.create({ nombre, edad, url })
+                .then(estudiante => response.json({ nombre: estudiante.nombre, edad: estudiante.edad, url: estudiante.url }))
                 .catch(err => response.json(err));
 
         }
@@ -53,15 +50,4 @@ module.exports.deleteEstudiante = (request, response) => {
     Estudiante.findByIdAndDelete(id)
         .then(() => response.json({ msg: "Estudiante eliminado correctamente" }))
         .catch(err => response.json(err));
-}
-module.exports.loginEstudiante = async (req, res) => {
-    const { email, password } = req.body;
-    const estudianteFound = await Estudiante.findOne({ email });
-    if (estudianteFound && (await bcrypt.compare(password, estudianteFound.password))) {
-        res.json({ message: "entraste", email: estudianteFound.email, nombre: estudianteFound.nombre,rol: estudianteFound.rol , token: generateToken(estudianteFound._id, estudianteFound.email, estudianteFound.nombre, estudianteFound.rol) })
-
-    } else {
-        res.status(400).json({ message: "Login Failed" })
-    }
-
 }

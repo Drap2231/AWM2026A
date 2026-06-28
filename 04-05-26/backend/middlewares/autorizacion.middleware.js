@@ -1,6 +1,6 @@
 
 const jwt = require("jsonwebtoken");
-const Estudiante = require("../models/estudiante.model");
+const Usuario = require("../models/usuario.model");
 const jwt_secret = "ok123"
 module.exports.protect = async (req, res, next) => {
     let token;
@@ -18,7 +18,7 @@ module.exports.protect = async (req, res, next) => {
 
             // agregamos a cada petición información del usuario - excepto el password
             // (recuperado con base en el _id contenido en el payload del token)
-            req.estudiante = await Estudiante.findOne({ _id: decoded.id }).select("-password");
+            req.Usuario = await Usuario.findOne({ _id: decoded.id }).select("-password");
         
             next();
         } catch (error) {
