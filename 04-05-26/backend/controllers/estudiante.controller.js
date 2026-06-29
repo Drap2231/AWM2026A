@@ -1,10 +1,5 @@
 const Estudiante = require("../models/estudiante.model");
 
-//Generar jwt
-const jwt_secret = "ok123"
-const generateToken = (id, email, nombre, rol) => {
-    return jwt.sign({ id, email, nombre, rol }, jwt_secret, { expiresIn: "30d" })
-}
 module.exports.getAllEstudiantes = (_, response) => {
     Estudiante.find({})
         .then(estudiantes => response.json(estudiantes))
