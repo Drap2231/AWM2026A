@@ -1,6 +1,6 @@
 
 const jwt = require("jsonwebtoken");
-const Usuario = require("../models/usuario.model");
+const Usuario = require("../../backend/models/usuario.model");
 const jwt_secret = "ok123"
 module.exports.protect = async (req, res, next) => {
     let token;
@@ -23,6 +23,7 @@ module.exports.protect = async (req, res, next) => {
             next();
         } catch (error) {
             res.status(401).json({ message: 'Not authorized!' });
+            
         }
     }
 

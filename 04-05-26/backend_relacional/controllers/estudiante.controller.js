@@ -10,7 +10,6 @@ module.exports.getEstudianteById = (request, response) => {
     const { id } = request.params;
     Estudiante.findByPk(id)
         .then(estudiante => {
-            if (!estudiante) return response.status(404).json({ msg: "Estudiante no encontrado" });
             response.json(estudiante);
         })
         .catch(err => response.json(err));
