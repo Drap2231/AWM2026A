@@ -1,0 +1,362 @@
+{
+  "info": {
+    "_postman_id": "3b4b35a5-eedb-4fc7-8db8-c6d6572c4996",
+    "name": "AWM",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51598581",
+    "_collection_link": "https://go.postman.co/collection/51598581-3b4b35a5-eedb-4fc7-8db8-c6d6572c4996?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "getRaiz",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://172.31.45.34:8000/",
+          "protocol": "http",
+          "host": [
+            "172",
+            "31",
+            "45",
+            "34"
+          ],
+          "port": "8000",
+          "path": [
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obtener lista de estudiantes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/estudiantes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "estudiantes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obtener estudiante por ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/estudiantes/6a2720c795394ad2724af67c/detalle",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "estudiantes",
+            "6a2720c795394ad2724af67c",
+            "detalle"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CrearEstudiante",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nombre\": \"Angel Chicaiza\",\r\n    \"edad\": 12,\r\n    \"url\": \"www.google.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://172.31.45.43:8000/estudiantes/crear",
+          "protocol": "http",
+          "host": [
+            "172",
+            "31",
+            "45",
+            "43"
+          ],
+          "port": "8000",
+          "path": [
+            "estudiantes",
+            "crear"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ActualizarEstudiante",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nombre\": \"Daniel Carrion\",\r\n  \"edad\": 19,\r\n  \"url\": \"www.google.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://172.31.45.43:8000/estudiantes/6a2b214cbeaa3fcb168bbfea",
+          "protocol": "http",
+          "host": [
+            "172",
+            "31",
+            "45",
+            "43"
+          ],
+          "port": "8000",
+          "path": [
+            "estudiantes",
+            "6a2b214cbeaa3fcb168bbfea"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Eliminar estudiante",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://172.31.45.43:8000/estudiantes/6a2720c795394ad2724af67c",
+          "protocol": "http",
+          "host": [
+            "172",
+            "31",
+            "45",
+            "43"
+          ],
+          "port": "8000",
+          "path": [
+            "estudiantes",
+            "6a2720c795394ad2724af67c"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CrearUsuario",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "    {\r\n    \"password\" : \"ok123456\",\r\n    \"email\": \"sapo.beltran@sapos.com\",\r\n    \"rol\": \"admin\"\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/usuarios",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "usuarios"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "LoginUsuario",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "    {\r\n    \"password\" : \"ok123456\",\r\n    \"email\": \"sapo.beltran@sapos.com\"\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/usuarios/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "usuarios",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ActualizarUsuario",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "AsignarAsignatura",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/matricula",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "matricula"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AsignaturasEstudiante",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/1/matricula",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "1",
+            "matricula"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CrearAsignaturas",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/asignaturas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "asignaturas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ObtenerAsignaturas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/asignaturas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "asignaturas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ObtenerAsignaturasById",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/asignaturas/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "asignaturas",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ActualizarAsignatura",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/asignaturas/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "asignaturas",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "BorrarAsignatura",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/asignaturas/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "asignaturas",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
