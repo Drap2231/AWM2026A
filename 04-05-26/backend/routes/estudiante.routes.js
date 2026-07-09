@@ -5,7 +5,7 @@ const { grantAccess } = require("../middlewares/roles.middleware");
 module.exports = function(app){
     // Permitido para admin y visualizador
     app.get("/estudiantes",  EstudianteController.getAllEstudiantes);
-    app.get("/estudiantes/:id", protect, grantAccess(["visualizador"]), EstudianteController.getEstudianteById);
+    app.get("/estudiantes/:id", EstudianteController.getEstudianteById);
     
     // Solo permitido para admin
     app.post("/estudiantes", protect, grantAccess([]), EstudianteController.createEstudiante);
