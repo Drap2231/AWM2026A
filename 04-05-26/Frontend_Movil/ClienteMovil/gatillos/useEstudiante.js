@@ -1,110 +1,98 @@
 import { useEffect, useState } from "react";
+import { api } from "../utilidades/api"; // Asegúrate de ajustar la ruta de importación
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { api } from "../utilidades/api";
 
 export const useEstudiante = () => {
   const [estudiantes, setEstudiantes] = useState([]);
 
-  useEffect(() => {
-    obtenerEstudiantes();
-  }, []);
-
-  const obtenerEstudiantes = async () => {
-    try {
-      const token = await AsyncStorage.getItem("token");
-
-      const res = await api.get("/estudiantes", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const datos = res.data.map((estudiante) => ({
-        ...estudiante,
-        id: estudiante._id || estudiante.id,
-      }));
-
-      setEstudiantes(datos);
-    } catch (error) {
-      console.log(error);
-    }
+  // 1. Obtener todos los estudiantes
+  const cargarEstudiantes = () => {
+    api
+      .get("/estudiantes")
+      .then((res) => {
+        const datos = res.data.map((estudiante) => ({
+          ...estudiante,
+          id: estudiante._id || estudiante.id,
+        }));
+        setEstudiantes(datos);
+      })
+      .catch((err) => console.log("Error al cargar estudiantes:", err));
   };
 
-  const agregarEstudiante = async (nuevoEstudiante) => {
-    try {
-      const token = await AsyncStorage.getItem("token");
+  useEffect(() => {
+    cargarEstudiantes();
+  }, []);
 
-      const res = await api.post(
-        "/estudiantes",
-        nuevoEstudiante,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
+  // 2. Crear un estudiante
+  const agregarEstudiante = (nuevoEstudiante) => {
+    const { nombre, edad, url } = nuevoEstudiante;
+    return api.post("/estudiantes", { nombre, edad, url }).then((res) => {
       const estudiante = {
         ...res.data,
         id: res.data._id || res.data.id,
       };
-
       setEstudiantes((prev) => [...prev, estudiante]);
-
       return res;
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
+    });
   };
 
-  const eliminarEstudiante = async (id) => {
-    try {
-      const token = await AsyncStorage.getItem("token");
+  // 3. Eliminar estudiante
+  const eliminarEstudiante = (id) => {
+    api
+      .delete(`/estudiantes/${id}`)
+      .then(() => {
+        setEstudiantes((prev) => prev.filter((e) => e.id !== id));
+      })
+      .catch((err) => console.log("Error al eliminar:", err));
+  };
 
-      await api.delete(`/estudiantes/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+  // 4. Editar estudiante
+  const editarEstudiante = (estudianteEditado) => {
+    const id = estudianteEditado._id || estudianteEditado.id;
+    return api
+      .put(`/estudiantes/${id}`, estudianteEditado)
+      .then((res) => {
+        const actualizado = res.data;
+        setEstudiantes((prev) =>
+          prev.map((estudiante) =>
+            (estudiante._id === actualizado._id || estudiante.id === actualizado._id)
+              ? { ...actualizado, id: actualizado._id }
+              : estudiante
+          )
+        );
+        return res;
       });
+  };
 
-      setEstudiantes((prev) =>
-        prev.filter((e) => e.id !== id)
-      );
-    } catch (error) {
-      console.log(error);
+  // 5. Autenticación de Usuarios (AsyncStorage)
+  const loginUsuario = async (credenciales) => {
+    try {
+      const res = await api.post("/usuarios/login", credenciales);
+      
+      // Guardamos de forma asíncrona en el dispositivo
+      await AsyncStorage.setItem("token", res.data.token);
+      if (res.data.rol) {
+        await AsyncStorage.setItem("rol", res.data.rol);
+      }
+
+      return { success: true, data: res.data };
+    } catch (err) {
+      return {
+        success: false,
+        message: err.response?.data?.message || "Credenciales incorrectas",
+      };
     }
   };
 
-  const editarEstudiante = async (estudianteEditado) => {
-    try {
-      const token = await AsyncStorage.getItem("token");
-
-      const res = await api.put(
-        `/estudiantes/${estudianteEditado._id}`,
-        estudianteEditado,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      const actualizado = res.data;
-
-      setEstudiantes((prev) =>
-        prev.map((estudiante) =>
-          estudiante._id === actualizado._id
-            ? actualizado
-            : estudiante
-        )
-      );
-
-      return actualizado;
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
+  // 6. Registro de nuevos Usuarios
+  const registrarUsuario = (nuevoUsuario) => {
+    return api
+      .post("/usuarios", nuevoUsuario)
+      .then((res) => ({ success: true, data: res.data }))
+      .catch((err) => ({
+        success: false,
+        message: err.response?.data?.message || "Error al registrar usuario",
+      }));
   };
 
   return {
@@ -112,6 +100,8 @@ export const useEstudiante = () => {
     agregarEstudiante,
     eliminarEstudiante,
     editarEstudiante,
-    obtenerEstudiantes,
+    loginUsuario,
+    registrarUsuario,
+    recargarLista: cargarEstudiantes // Te servirá para hacer pull-to-refresh en el celular
   };
 };

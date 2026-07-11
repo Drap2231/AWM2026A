@@ -1,24 +1,22 @@
-//Crear una instancia personalizada de axios para conectarnos a la api para conectarnos a 
-import axios from "axios"
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const api = axios.create(
-    {
-        baseURL: import.meta.env.VITE_URL_BASE
-        
+export const api = axios.create({
+    // REEMPLAZA CON LA IP DE TU PC (No uses localhost)
+    baseURL: "http://192.168.100.245:8000" 
+});
+
+// Interceptor asíncrono para React Native
+api.interceptors.request.use(async (config) => {
+    try {
+        const token = await AsyncStorage.getItem("token");
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+    } catch (error) {
+        console.log("Error al recuperar el token", error);
     }
-);
-/*api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-return config;
-  */
-  
-/*
-1 crea un nuevo componente funcional detalleestudiante.jsx
-2 Agregar una nueva ruta en la tabla en app.jsx /estudiante/:id/detalle
-3solicitar al backend la informacion del estudiante con un get
-4 redireccionamos de estudiantepage hacia detaleEstudiante usando usenavigate
-*/
+    return config;
+}, (error) => {
+    return Promise.reject(error);
+});

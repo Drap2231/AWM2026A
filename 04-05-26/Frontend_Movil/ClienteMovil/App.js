@@ -1,27 +1,71 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Estudiantes from './pages/EstudiantePagina'; 
-import DetalleEstudiante from './pages/DetalleEstudiante'
-const Stack = createNativeStackNavigator()
+
+// Importa tu hook adaptado para mobile
+import { useEstudiante } from './gatillos/useEstudiante';
+
+// Importa todas las vistas que acabamos de portar
+import UsuarioLogin from './pantallas/UsuarioLogin';
+import UsuarioRegistro from './pantallas/UsuarioRegistro';
+import EstudiantesLista from './pantallas/EstudiantesLista';
+import EstudianteFormulario from './pantallas/EstudianteFormulario';
+import DetalleEstudiante from './pantallas/DetalleEstudiante';
+
+const Stack = createNativeStackNavigator();
+
 export default function App() {
+  const { 
+    estudiantes, 
+    agregarEstudiante, 
+    eliminarEstudiante, 
+    editarEstudiante, 
+    loginUsuario, 
+    registrarUsuario,
+    recargarLista 
+  } = useEstudiante();
 
   return (
-   <NavigationContainer>
-    <Stack.Navigator>
-    <Stack.Screen name="Estudiantes" component={Estudiantes}
-      options = {{title: "Lista de estudiantes"}}/>
-      <Stack.Screen name="DetalleEstudiante" component={DetalleEstudiante}
-      options = {{title: "Detalle de estudiante"}}/>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+        
+        {/* 1. Login */}
+        <Stack.Screen name="Login">
+          {(props) => <UsuarioLogin {...props} onLogin={loginUsuario} />}
+        </Stack.Screen>
+
+        {/* 2. Registro de Usuario */}
+        <Stack.Screen name="UsuarioRegistro">
+          {(props) => <UsuarioRegistro {...props} onRegistration={registrarUsuario} />}
+        </Stack.Screen>
+
+        {/* 3. Lista de Estudiantes */}
+        <Stack.Screen name="EstudiantesLista">
+          {(props) => (
+            <EstudiantesLista 
+              {...props} 
+              estudiantes={estudiantes} 
+              onEliminar={eliminarEstudiante}
+              recargarLista={recargarLista}
+            />
+          )}
+        </Stack.Screen>
+
+        {/* 4. Formulario (Crea y Edita) */}
+        <Stack.Screen name="EstudianteFormulario">
+          {(props) => (
+            <EstudianteFormulario 
+              {...props} 
+              onAgregar={agregarEstudiante} 
+              onEditar={editarEstudiante} 
+            />
+          )}
+        </Stack.Screen>
+
+        {/* 5. Detalle del Estudiante */}
+        <Stack.Screen name="DetalleEstudiante" component={DetalleEstudiante} />
+
       </Stack.Navigator>
- </NavigationContainer>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5', 
-  },
-});
