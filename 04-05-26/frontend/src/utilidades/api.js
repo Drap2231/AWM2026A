@@ -1,20 +1,19 @@
-//Crear una instancia personalizada de axios para conectarnos a la api para conectarnos a 
-import axios from "axios"
+import axios from "axios";
 
-export const api = axios.create(
-    {
-        baseURL: import.meta.env.VITE_URL_BASE
-        
+export const api = axios.create({
+    baseURL: import.meta.env.VITE_URL_BASE || "http://localhost:8000"
+});
+
+// Interceptor para adjuntar automáticamente el token JWT a todas las peticiones
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
     }
-);
-/*api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-return config;
-  */
+    return config;
+}, (error) => {
+    return Promise.reject(error);
+});
   
 /*
 1 crea un nuevo componente funcional detalleestudiante.jsx

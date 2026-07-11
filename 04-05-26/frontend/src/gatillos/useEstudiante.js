@@ -4,90 +4,86 @@ import { api } from "../utilidades/api";
 export const useEstudiante = () => {
   const [estudiantes, setEstudiantes] = useState([]);
 
+  // 1. Obtener todos los estudiantes
   useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      console.log("Primero incia sesion");
-    }
     api
-      .get("/estudiantes", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get("/estudiantes")
       .then((res) => {
-        console.log("Respuesta estudiantes:", res.data);
         const datos = res.data.map((estudiante) => ({
           ...estudiante,
           id: estudiante._id || estudiante.id,
         }));
-
         setEstudiantes(datos);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("Error al cargar estudiantes:", err));
   }, []);
 
+  // 2. Crear un estudiante (Solo datos del estudiante: nombre, edad, url)
   const agregarEstudiante = (nuevoEstudiante) => {
-    return api.post("/estudiantes", nuevoEstudiante).then((res) => {
+    // Mandamos solo lo que pide el modelo de Estudiante
+    const { nombre, edad, url } = nuevoEstudiante;
+    return api.post("/estudiantes", { nombre, edad, url }).then((res) => {
       const estudiante = {
         ...res.data,
         id: res.data._id || res.data.id,
       };
-
       setEstudiantes((prev) => [...prev, estudiante]);
-
       return res;
     });
   };
 
+  // 3. Eliminar estudiante
   const eliminarEstudiante = (id) => {
     api
-      .delete(`/estudiantes/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
+      .delete(`/estudiantes/${id}`)
       .then(() => {
         setEstudiantes((prev) => prev.filter((e) => e.id !== id));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("Error al eliminar:", err));
   };
 
-const editarEstudiante = (estudianteEditado) => {
-  api
-    .put(
-      `/estudiantes/${estudianteEditado._id}`,
-      estudianteEditado,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    )
-    .then((res) => {
-
-      const actualizado = res.data;
-
-      setEstudiantes((prev) =>
-        prev.map((estudiante) =>
-          estudiante._id === actualizado._id
-            ? actualizado
-            : estudiante
-        )
-      );
-    })
-    .catch((err) => console.log(err));
-};
-  const loginEstudiante = (credenciales) => {
-    return api
-      .post("/estudiantes/login", credenciales)
+  // 4. Editar estudiante
+  const editarEstudiante = (estudianteEditado) => {
+    const id = estudianteEditado._id || estudianteEditado.id;
+    api
+      .put(`/estudiantes/${id}`, estudianteEditado)
       .then((res) => {
-        console.log("Respuesta login:", res.data);
-        console.log("Token:", res.data.token);
+        const actualizado = res.data;
+        setEstudiantes((prev) =>
+          prev.map((estudiante) =>
+            (estudiante._id === actualizado._id || estudiante.id === actualizado._id)
+              ? { ...actualizado, id: actualizado._id }
+              : estudiante
+          )
+        );
+      })
+      .catch((err) => console.log("Error al editar:", err));
+  };
 
+  // 5. Autenticación de Usuarios (Sincronizado con POST /usuarios/login)
+  const loginUsuario = (credenciales) => {
+    return api
+      .post("/usuarios/login", credenciales)
+      .then((res) => {
         localStorage.setItem("token", res.data.token);
+        return {
+          success: true,
+          data: res.data, // Contiene email, rol, token
+        };
+      })
+      .catch((err) => {
+        return {
+          success: false,
+          message: err.response?.data?.message || "Credenciales incorrectas",
+        };
+      });
+  };
 
+  // 6. Registro de nuevos Usuarios (Sincronizado con POST /usuarios)
+  const registrarUsuario = (nuevoUsuario) => {
+    return api
+      .post("/usuarios", nuevoUsuario)
+      .then((res) => {
         return {
           success: true,
           data: res.data,
@@ -96,7 +92,7 @@ const editarEstudiante = (estudianteEditado) => {
       .catch((err) => {
         return {
           success: false,
-          message: err.response?.data?.message || "Login Failed",
+          message: err.response?.data?.message || "Error al registrar usuario",
         };
       });
   };
@@ -106,6 +102,7 @@ const editarEstudiante = (estudianteEditado) => {
     agregarEstudiante,
     eliminarEstudiante,
     editarEstudiante,
-    loginEstudiante,
+    loginUsuario,
+    registrarUsuario,
   };
 };

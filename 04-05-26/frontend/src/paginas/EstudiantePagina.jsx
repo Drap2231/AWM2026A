@@ -33,9 +33,9 @@ const EstudiantePagina = (props) => {
 
   const navegar = useNavigate()
       const cerrarSesion = () => {
-        localStorage.removeItem("token");
-        navegar("/estudiantes/login");
-    };
+    localStorage.clear(); // Esto borra tanto el 'token' como el 'rol' de un solo golpe
+    navegar("/estudiantes/login");
+};
   return (
     <div>
      <button onClick={()=>cerrarSesion()}>log out</button>

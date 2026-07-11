@@ -1,53 +1,73 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import EstudianteFormulario from "./componentes/EstudianteFormulario";
 import EstudiantePagina from "./paginas/EstudiantePagina";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./paginas/HomePage";
-import { useEstudiante } from "./gatillos/useEstudiante";
 import DetalleEstudiante from "./paginas/DetalleEstudiante";
-import EstudianteLogin from "./paginas/EstudianteLogin";
+import UsuarioLogin from "./paginas/UsuarioLogin";
+import UsuarioRegistro from "./componentes/UsuarioRegistro"; 
 import RutaProtegida from "./componentes/RutaProtegida";
+import { useEstudiante } from "./gatillos/useEstudiante";
+
 function App() {
+
   const {
     estudiantes,
     agregarEstudiante,
     eliminarEstudiante,
     editarEstudiante,
-    loginEstudiante,
+    loginUsuario,
+    registrarUsuario, 
   } = useEstudiante();
 
   return (
-    //es jsx(solo lo que esta dentro del return)
-    //<div>
-    //  <EstudiantePagina/>
-    //</div>
     <BrowserRouter>
       <Routes>
         <Route
           path="/estudiantes"
-          element={<RutaProtegida>
-            <EstudiantePagina
-              estudiantes={estudiantes}
-              onEliminar={eliminarEstudiante}
-            /></RutaProtegida>
+          element={
+            <RutaProtegida>
+              <EstudiantePagina
+                estudiantes={estudiantes}
+                onEliminar={eliminarEstudiante}
+              />
+            </RutaProtegida>
           }
-        ></Route>
-        <Route
-          path="/nuevo"
-          element={<EstudianteFormulario onAgregar={agregarEstudiante} />}
-        ></Route>
-        <Route path="/" element={<HomePage />}></Route>
+        />
+
+<Route
+  path="/nuevo"
+  element={
+    <RutaProtegida>
+      <EstudianteFormulario onAgregar={agregarEstudiante} />
+    </RutaProtegida>
+  }
+/>
+
+        <Route path="/" element={<HomePage />} />
+
         <Route
           path="/estudiantes/:id/detalle"
           element={<DetalleEstudiante />}
-        ></Route>
+        />
+
         <Route
           path="/estudiar/:id/editar"
-          element={<RutaProtegida><EstudianteFormulario onEditar={editarEstudiante} /></RutaProtegida>}
-        ></Route>
+          element={
+            <RutaProtegida>
+              <EstudianteFormulario onEditar={editarEstudiante} />
+            </RutaProtegida>
+          }
+        />
+
         <Route
           path="/estudiantes/login"
-          element={<EstudianteLogin onLogin={loginEstudiante} />}
-        ></Route>
+          element={<UsuarioLogin onLogin={loginUsuario} />}
+        />
+
+        <Route
+          path="/usuarios/registro"
+          element={<UsuarioRegistro onRegistro={registrarUsuario} />}
+        />
       </Routes>
     </BrowserRouter>
   );
