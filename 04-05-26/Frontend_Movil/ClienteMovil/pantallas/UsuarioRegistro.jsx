@@ -11,7 +11,7 @@ import {
 const UsuarioRegistro = ({ onRegistro, navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rol, setRol] = useState("visualizador"); // Por defecto
+  const [rol, setRol] = useState("visualizador"); 
   const [error, setError] = useState("");
 
   const registrar = async () => {

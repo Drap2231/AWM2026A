@@ -36,7 +36,7 @@ export default function App() {
 
         {/* 2. Registro de Usuario */}
         <Stack.Screen name="UsuarioRegistro">
-          {(props) => <UsuarioRegistro {...props} onRegistration={registrarUsuario} />}
+          {(props) => <UsuarioRegistro {...props} onRegistro={registrarUsuario} />}
         </Stack.Screen>
 
         {/* 3. Lista de Estudiantes */}

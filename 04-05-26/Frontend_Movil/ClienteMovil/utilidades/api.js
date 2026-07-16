@@ -2,8 +2,7 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const api = axios.create({
-    // REEMPLAZA CON LA IP DE TU PC (No uses localhost)
-    baseURL: "http://192.168.100.245:8000" 
+    baseURL: "http://172.29.8.230:8000" 
 });
 
 // Interceptor asíncrono para React Native
